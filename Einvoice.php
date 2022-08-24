@@ -2,8 +2,10 @@
 
 namespace Zero;
 
-class einvoice
+class Einvoice
 {
-
-    
+    public function __construct()
+    {
+        
+    }
 }
