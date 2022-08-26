@@ -11,7 +11,7 @@ class Invoice
         
     }
 
-    public function useEcPaymentInvoice()
+    public function useEcInvoice()
     {
         
     }
