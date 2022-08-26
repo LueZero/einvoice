@@ -4,18 +4,17 @@ return [
     'ec' => [
         'invoiceParameters' => [
             'MerchantID' => 2000132,
-            'CreditCheckCode' => 25938511,
-            'HashKey' => '5294y06JbISpM5x9',
-            'HashIV' => 'v77hoKGq4kWxNNIS'
+            'HashKey' => 'ejCk326UnaZWKisg',
+            'HashIV' => 'q9jcZX8Ib9LM8wYk'
         ],
         'B2B' => [
             'invoiceURLs' => [
-                'base' => 'https://einvoice.ecpay.com.tw/B2BInvoice'
+                'baseRUL' => 'https://einvoice-stage.ecpay.com.tw/B2BInvoice'
             ]
         ],
         'B2C' => [
             'invoiceURLs' => [
-                'base' => 'https://einvoice.ecpay.com.tw/B2CInvoice',
+                'baseURL' => 'https://einvoice-stage.ecpay.com.tw/B2CInvoice',
                 'issue' => '/issue',
                 'invalid' => '/Invalid',
                 'allowanceInvalid' => '/AllowanceInvalid',
