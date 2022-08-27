@@ -13,17 +13,17 @@ class EcInvoice
     protected $configs;
 
     /**
-     * @var string MerchantID 特店編號
+     * @var string merchantID 特店編號
      */
     protected $merchantID;
 
     /**
-     * @var string HashKey Key
+     * @var string hashKey
      */
     protected $hashKey;
 
     /**
-     * @var string HashIv Iv
+     * @var string hashIv
      */
     protected $hashIv;
 }
