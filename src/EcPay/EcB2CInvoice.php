@@ -18,13 +18,13 @@ class EcB2CInvoice extends EcInvoice
     public function createIssue(Issue $issueRequestParameter)
     {
         $sendData = array_filter((array) $issueRequestParameter);
-        $sendData['Data'] = $this->encryption($sendData['Data']);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
         $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['issue'], [
             'Content-Type: application/json',
         ], json_encode($sendData));
 
         $result = json_decode($response->body, true);
-        $result['Data'] = $this->decryption($result['Data']);
+        $result['Data'] = $this->decrypt($result['Data']);
 
         return json_encode($result, true);
     }
@@ -33,7 +33,7 @@ class EcB2CInvoice extends EcInvoice
      * 加密
      * @param string data
      */
-    public function encryption($data)
+    public function encrypt($data)
     {
         if (openssl_cipher_iv_length('aes-128-cbc') !== strlen($this->hashIv)) {
             throw new \LogicException('hash iv is not valid');
@@ -46,7 +46,7 @@ class EcB2CInvoice extends EcInvoice
      * 解密
      * @param string encrypted
      */
-    public function decryption($encrypted)
+    public function decrypt($encrypted)
     {
         if (openssl_cipher_iv_length('aes-128-cbc') !== strlen($this->hashIv)) {
             throw new \LogicException('hash iv is not valid');
