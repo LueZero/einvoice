@@ -12,12 +12,12 @@ class Issue
     public $PlatformID;
 
     /**
-     * @var string MerchantID 特店編號
+     * @var string merchantID 特店編號
      */
     public $MerchantID;
 
     /**
-     * @var array RqHeader 傳入資料
+     * @var array rqHeader 傳入資料
      */
     public $RqHeader;
 
