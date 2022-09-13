@@ -7,7 +7,10 @@ use Zero\EcPay\Requests\Parameters\Issue;
 use WpOrg\Requests\Requests;
 
 class EcB2CInvoice extends EcInvoice
-{
+{   
+    /**
+     * @param array configs 
+     */
     public function __construct($configs)
     {
         $this->configs = $configs;
@@ -15,6 +18,9 @@ class EcB2CInvoice extends EcInvoice
         $this->hashIv = $this->configs['invoiceParameters']['HashIV'];
     }
 
+    /**
+     * @param Issue issueRequestParameter 
+     */
     public function createIssue(Issue $issueRequestParameter)
     {
         $sendData = array_filter((array) $issueRequestParameter);
@@ -57,8 +63,8 @@ class EcB2CInvoice extends EcInvoice
 
     /**
      * 強度 128/8 = 16bytes
-     * @param string $str
-     * @param int $size
+     * @param string str
+     * @param int size
      * @return string
      */
     protected function addPadding(string $str, int $size = 16)
@@ -70,7 +76,7 @@ class EcB2CInvoice extends EcInvoice
     }
 
     /**
-     * @param $string
+     * @param string string
      * @return string
      * @throws \Exception
      */
