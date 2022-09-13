@@ -5,55 +5,65 @@ namespace Zero\EcPay\Requests\Parameters;
 class IssueData
 {
     /**
-     * @var string merchantID 特店編號
+     * @var string 
+     * 特店編號
      */
     public $MerchantID;
 
     /**
-     * @var string relateNumber 特店自訂編號
+     * @var string 
+     * 特店自訂編號
      */
     public $RelateNumber;
 
     /**
-     * @var string customerID 客戶編號
+     * @var string 
+     * 客戶編號
      */
     public $CustomerID;
 
     /**
-     * @var string customerIdentifier 統一編號
+     * @var string 
+     * 統一編號
      */
     public $CustomerIdentifier;
 
     /**
-     * @var string customerName 客戶名稱
+     * @var string 
+     * 客戶名稱
      * 當列印註記[Print]=1(列印)時，此參數為必填
      */
     public $CustomerName;
 
     /**
-     * @var string customerAddr 客戶地址
+     * @var string 
+     * 客戶地址
      * 當列印註記[Print]=1(列印)時，此參數為必填
      */
     public $CustomerAddr;
 
     /**
-     * @var string customerPhone 客戶手機號碼
+     * @var string 
+     * 客戶手機號碼
      */
     public $CustomerPhone;
 
     /**
-     * @var string customerEmail 客戶電子信箱
+     * @var string 
+     * 客戶電子信箱
      */
     public $CustomerEmail;
 
     /**
-     * @var string clearanceMark 通關方式
+     * @var string 
+     * 通關方式
      * 1：非經海關出口 2：經海關出口
      */
     public $ClearanceMark;
 
     /**
-     * @var string print 列印註記
+     * @var string 
+     * 列印註記
      * 0：不列印
      * 1：要列印
      * 注意事項：
@@ -66,7 +76,8 @@ class IssueData
     public $Print;
 
     /**
-     * @var string donation 捐贈註記 
+     * @var string 
+     * 捐贈註記 
      * 1. 0=不捐贈
      * 2. 1=要捐贈
      * 
@@ -77,14 +88,16 @@ class IssueData
     public $Donation;
 
     /**
-     * @var string loveCode 捐贈碼
+     * @var string 
+     * 捐贈碼
      * 當捐贈註記[Donation]=1(要捐贈)時，為必填
      * 格式為阿拉伯數字為限，最少三碼，最多七碼，首位可以為零
      */
     public $LoveCode;
 
     /**
-     * @var string carrierType 載具類別
+     * @var string 
+     * 載具類別
      * 
      * 空字串：無載具
      *   1. 綠界電子發票載具
@@ -99,7 +112,8 @@ class IssueData
 
 
     /**
-     * @var string carrierNum 載具編號
+     * @var string 
+     * 載具編號
      * 1. [CarrierType]="" 時，請帶空字串
      * 2. [CarrierType]=1 時，請帶空字串，系統會自動帶入值，為客戶電子信箱或客戶手機號碼擇一(以客戶電子信箱優先)
      * 3. [CarrierType]=2 時，請帶固定長度為 `16` 且格式為 `2` 碼大寫英文字母加上 '14' 碼數字
@@ -111,7 +125,8 @@ class IssueData
     public $CarrierNum;
 
     /**
-     * @var string taxType 課稅類別
+     * @var string 
+     * 課稅類別
      * 1. 當字軌類別[InvType]為 07 時，則此欄位請填入 1、2、3 或 9
      * 2. 當字軌類別[InvType]為 08 時，則此欄位請填入 3 或 4
      *
@@ -124,7 +139,9 @@ class IssueData
     public $TaxType;
 
     /**
-     * @var string specialTaxType 特種稅額類別
+     * @var string 
+     * 特種稅額類別
+     * 
      * 1. 當課稅類別[TaxType]為 1/2/9 時，系統將會自動帶入數字【0】
      * 2. 當課稅類別[TaxType]為 3 時，則該參數必填，請填入數字【8】
      * 3. 當課稅類別[TaxType]為 4 時，則該參數必填，可填入數字【1-8】
@@ -132,17 +149,19 @@ class IssueData
     public $SpecialTaxType;
 
     /**
-     * @var int salesAmount 發票總金額(含稅) 金額不可為 0 元。
+     * @var int 
+     * 發票總金額(含稅) 金額不可為 0 元。
      */
     public $SalesAmount;
 
     /**
-     * @var string invoiceRemark 發票備註
+     * @var string 
+     * 發票備註
      */
     public $InvoiceRemark;
 
     /**
-     * @var array items 商品
+     * @var array 商品
      * @var array[ItemSeq] 商品序號
      * @var array[ItemName] 商品名稱
      * @var array[ItemCount] 商品數量 支援整數 8 位小數 2 位
@@ -155,14 +174,16 @@ class IssueData
     public $Items;
 
     /**
-     * @var string invType 字軌類別
+     * @var string 
+     * 字軌類別
      * 1. 07：一般稅額
      * 2. 08 : 特種稅額
      */
     public $InvType;
 
     /**
-     * @var string vat 商品單價是否含稅
+     * @var string 
+     * 商品單價是否含稅
      * 1. 1：含稅
      * 2. 0：未稅
      */
