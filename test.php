@@ -5,12 +5,13 @@ error_reporting(E_ALL);
 require './vendor/autoload.php';
 
 use Zero\Invoice as Invoice;
+use Zero\InvoiceObject as InvoiceObject;
 use Zero\EcPay\Requests\Parameters\Issue;
 
 // 綠界 發票範例 - 開立發票
 $RelateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 
-$invoice = new Invoice('ec');
-$ecInvoice = $invoice->useEcInvoice('B2C');
+$invoice = new Invoice(InvoiceObject::EC);
+$ecInvoice = $invoice->useEcInvoice(InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
 $issue->RqHeader = ['Timestamp' => time()];
@@ -46,5 +47,5 @@ $issue->Data->Items = [
         'ItemRemark' => "item01_desc"
     ]
 ];
-echo $result = $ecInvoice->createIssue($issue);
+echo $ecInvoice->createIssue($issue);
 return;

@@ -17,6 +17,9 @@ class Invoice
      */
     public $invoiceName;
 
+    /**
+     * @param \Zero\InvoiceObject invoiceName
+     */
     public function __construct($invoiceName)
     {
        $this->invoiceName = $invoiceName;
@@ -24,10 +27,10 @@ class Invoice
     }
 
     /**
-     * ˇ使用Ec發票模組
-     * @var string invoiceObject
+     * 使用Ec發票模組
+     * @param \Zero\InvoiceObject invoiceName
      */
-    public function useEcInvoice($invoiceObject = "B2C")
+    public function useEcInvoice($invoiceObject)
     {
         $ecInvoice = null;
 
