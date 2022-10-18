@@ -9,14 +9,13 @@ use Zero\InvoiceObject as InvoiceObject;
 use Zero\EcPay\Requests\Parameters\Issue;
 
 // 綠界 發票範例 - 開立發票
-$RelateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 
-$invoice = new Invoice(InvoiceObject::EC);
-$ecInvoice = $invoice->useEcInvoice(InvoiceObject::B2C);
+$relateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 
+$invoice = new Invoice(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
 $issue->RqHeader = ['Timestamp' => time()];
 $issue->Data->MerchantID = '2000132';
-$issue->Data->RelateNumber = $RelateNumber;
+$issue->Data->RelateNumber = $relateNumber;
 $issue->Data->CustomerID = '';
 $issue->Data->CustomerIdentifier = '';
 $issue->Data->CustomerName = 'xxx有限公司';
@@ -47,5 +46,5 @@ $issue->Data->Items = [
         'ItemRemark' => "item01_desc"
     ]
 ];
-echo $ecInvoice->createIssue($issue);
+echo $invoice->getEcInvoice()->createIssue($issue);
 return;

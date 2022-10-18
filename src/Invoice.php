@@ -6,36 +6,56 @@ use Zero\InvoiceObject;
 use Zero\EcPay\EcB2CInvoice;
 
 class Invoice
-{   
+{
     /**
-    * @var array
+     * @var array
      */
     public $configs;
 
     /**
      * @var string
      */
-    public $invoiceName;
+    public $invoiceModuleName;
 
     /**
-     * @param \Zero\InvoiceObject invoiceName
+     * @var string
      */
-    public function __construct($invoiceName)
+    public $invoiceTypeName;
+
+    /**
+     * @param \Zero\InvoiceObject invoiceModuleName
+     * @param \Zero\InvoiceObject invoiceTypeName
+     */
+    public function __construct($invoiceModuleName, $invoiceTypeName)
     {
-       $this->invoiceName = $invoiceName;
-       $this->requireConfig($this->invoiceName);
+        $this->invoiceModuleName = $invoiceModuleName;
+        $this->invoiceTypeName = $invoiceTypeName;      
     }
 
     /**
-     * 使用Ec發票模組
-     * @param \Zero\InvoiceObject invoiceName
+     * 呼叫配置檔案
      */
-    public function useEcInvoice($invoiceObject)
+    private function requireConfig()
     {
+        $configs = require('config.php');
+
+        if (empty($configs[$this->invoiceModuleName]))
+            throw new \Exception('Zero\Invoice::[invoice config is empty]');
+
+        $this->configs = $configs[$this->invoiceModuleName];
+    }
+
+    /**
+     * 設定 Ec 發票模組
+     * @return \Zero\EcPay\EcInvoice
+     */
+    public function getEcInvoice()
+    {
+        $this->requireConfig();
+        
         $ecInvoice = null;
 
-        switch($invoiceObject)
-        {
+        switch ($this->invoiceTypeName) {
             case InvoiceObject::B2C:
                 $ecInvoice = new EcB2CInvoice($this->configs);
                 break;
@@ -45,18 +65,5 @@ class Invoice
             throw new \Exception('Zero\Invoice::[no ec invoice class]');
 
         return $ecInvoice;
-    }
-
-    /**
-     * 呼叫配置檔案
-     */
-    private function requireConfig($invoiceName)
-    {
-        $configs = require('config.php');
-
-        if (empty($configs[$invoiceName]))
-            throw new \Exception('Zero\Invoice::[invoice config is empty]');
-
-        $this->configs = $configs[$invoiceName];
     }
 }
