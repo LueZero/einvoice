@@ -11,7 +11,7 @@ class EcB2CInvoice extends EcInvoice
     /**
      * @param array configs 
      */
-    public function __construct($configs)
+    public function __construct(array $configs)
     {
         $this->configs = $configs;
         $this->hashKey = $this->configs['invoiceParameters']['HashKey'];

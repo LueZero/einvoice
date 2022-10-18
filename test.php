@@ -46,5 +46,6 @@ $issue->Data->Items = [
         'ItemRemark' => "item01_desc"
     ]
 ];
+
 echo $invoice->getEcInvoice()->createIssue($issue);
 return;

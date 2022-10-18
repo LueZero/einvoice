@@ -23,13 +23,14 @@ class Invoice
     public $invoiceTypeName;
 
     /**
-     * @param \Zero\InvoiceObject invoiceModuleName
-     * @param \Zero\InvoiceObject invoiceTypeName
+     * @param string invoiceModuleName
+     * @param string invoiceTypeName
      */
     public function __construct($invoiceModuleName, $invoiceTypeName)
     {
         $this->invoiceModuleName = $invoiceModuleName;
         $this->invoiceTypeName = $invoiceTypeName;      
+        $this->requireConfig();
     }
 
     /**
@@ -51,10 +52,8 @@ class Invoice
      */
     public function getEcInvoice()
     {
-        $this->requireConfig();
-        
         $ecInvoice = null;
-
+       
         switch ($this->invoiceTypeName) {
             case InvoiceObject::B2C:
                 $ecInvoice = new EcB2CInvoice($this->configs);

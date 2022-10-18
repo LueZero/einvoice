@@ -27,4 +27,12 @@ class EcInvoice
      * @var string
      */
     protected $hashIv;
+
+    /**
+     * @var array configs
+     */
+    public function setConfig(array $configs)
+    {
+        $this->$configs = $configs;
+    }
 }
