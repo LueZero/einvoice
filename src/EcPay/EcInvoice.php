@@ -7,8 +7,8 @@ use Zero\EcPay\Requests\Parameters\Issue;
 class EcInvoice
 {
     /**
-     * 配置
      * @var array
+     * 配置
      */
     protected $configs;
 
