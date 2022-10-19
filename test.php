@@ -4,13 +4,13 @@ error_reporting(E_ALL);
 
 require './vendor/autoload.php';
 
-use Zero\Invoice as Invoice;
+use Zero\InvoiceClient as InvoiceClient;
 use Zero\InvoiceObject as InvoiceObject;
 use Zero\EcPay\Requests\Parameters\Issue;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 
-$invoice = new Invoice(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
 $issue->RqHeader = ['Timestamp' => time()];
@@ -47,5 +47,6 @@ $issue->Data->Items = [
     ]
 ];
 
-echo $invoice->getEcInvoice()->createIssue($issue);
+$ecInvoice = $invoiceClient->createEcInvoice();
+echo $ecInvoice->createIssue($issue);
 return;

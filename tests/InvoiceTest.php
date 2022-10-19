@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Zero\Invoice as Invoice;
+use Zero\InvoiceClient as InvoiceClient;
 
 final class InvoiceTest extends TestCase
 {

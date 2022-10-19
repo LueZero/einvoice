@@ -5,7 +5,7 @@ namespace Zero;
 use Zero\InvoiceObject;
 use Zero\EcPay\EcB2CInvoice;
 
-class Invoice
+class InvoiceClient
 {
     /**
      * @var array
@@ -50,7 +50,7 @@ class Invoice
      * 設定 Ec 發票模組
      * @return \Zero\EcPay\EcInvoice
      */
-    public function getEcInvoice()
+    public function createEcInvoice()
     {
         $ecInvoice = null;
        
