@@ -1,6 +1,6 @@
 <?php
 
-namespace Zero\EcPay\Requests\Parameters;
+namespace Zero\Invoices\EcPay\Requests\Parameters;
 
 class IssueData
 {

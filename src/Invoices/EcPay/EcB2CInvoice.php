@@ -1,9 +1,9 @@
 <?php
 
-namespace Zero\EcPay;
+namespace Zero\Invoices\EcPay;
 
-use Zero\EcPay\EcInvoice;
-use Zero\EcPay\Requests\Parameters\Issue;
+use Zero\Invoices\EcPay\EcInvoice;
+use Zero\Invoices\EcPay\Requests\Parameters\Issue;
 use WpOrg\Requests\Requests;
 
 class EcB2CInvoice extends EcInvoice
@@ -11,11 +11,9 @@ class EcB2CInvoice extends EcInvoice
     /**
      * @param array configs 
      */
-    public function __construct(array $configs)
+    public function __construct()
     {
-        $this->configs = $configs;
-        $this->hashKey = $this->configs['invoiceParameters']['HashKey'];
-        $this->hashIv = $this->configs['invoiceParameters']['HashIV'];
+        $this->requireConfig('ec');
     }
 
     /**
@@ -38,6 +36,7 @@ class EcB2CInvoice extends EcInvoice
     /**
      * 加密
      * @param string data
+     * @throws \Exception
      */
     public function encrypt($data)
     {
@@ -51,6 +50,7 @@ class EcB2CInvoice extends EcInvoice
     /**
      * 解密
      * @param string encrypted
+     * @throws \Exception
      */
     public function decrypt($encrypted)
     {

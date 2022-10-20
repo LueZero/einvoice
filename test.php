@@ -6,7 +6,7 @@ require './vendor/autoload.php';
 
 use Zero\InvoiceClient as InvoiceClient;
 use Zero\InvoiceObject as InvoiceObject;
-use Zero\EcPay\Requests\Parameters\Issue;
+use Zero\Invoices\EcPay\Requests\Parameters\Issue;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 

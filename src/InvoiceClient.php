@@ -3,15 +3,10 @@
 namespace Zero;
 
 use Zero\InvoiceObject;
-use Zero\EcPay\EcB2CInvoice;
+use Zero\Invoices\EcPay\EcB2CInvoice;
 
 class InvoiceClient
 {
-    /**
-     * @var array
-     */
-    public $configs;
-
     /**
      * @var string
      */
@@ -29,26 +24,13 @@ class InvoiceClient
     public function __construct($invoiceModuleName, $invoiceTypeName)
     {
         $this->invoiceModuleName = $invoiceModuleName;
-        $this->invoiceTypeName = $invoiceTypeName;      
-        $this->requireConfig();
-    }
-
-    /**
-     * 呼叫配置檔案
-     */
-    private function requireConfig()
-    {
-        $configs = require('config.php');
-
-        if (empty($configs[$this->invoiceModuleName]))
-            throw new \Exception('Zero\Invoice::[invoice config is empty]');
-
-        $this->configs = $configs[$this->invoiceModuleName];
+        $this->invoiceTypeName = $invoiceTypeName;            
     }
 
     /**
      * 設定 Ec 發票模組
      * @return \Zero\EcPay\EcInvoice
+     * @throws \Exception
      */
     public function createEcInvoice()
     {
@@ -56,7 +38,7 @@ class InvoiceClient
        
         switch ($this->invoiceTypeName) {
             case InvoiceObject::B2C:
-                $ecInvoice = new EcB2CInvoice($this->configs);
+                $ecInvoice = new EcB2CInvoice();
                 break;
         }
 
