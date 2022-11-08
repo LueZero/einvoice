@@ -9,7 +9,7 @@ use Zero\InvoiceObject as InvoiceObject;
 use Zero\Invoices\EcPay\Requests\Parameters\Issue;
 
 // 綠界 發票範例 - 開立發票
-$relateNumber = 'EcInvoice'. date('YmdHis') . rand(1000, 0); 
+$relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
 $invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
