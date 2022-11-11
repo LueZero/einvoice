@@ -3,12 +3,12 @@
 namespace Zero\Invoices\EcPay\Requests\Parameters;
 
 use Zero\Invoices\EcPay\Requests\Parameters\Base;
-use Zero\Invoices\EcPay\Requests\Parameters\IssueData;
+use Zero\Invoices\EcPay\Requests\Parameters\InvalidData;
 
-class Issue extends Base
+class Invalid extends Base
 {
     public function __construct()
     {
-        $this->Data = new IssueData();
+        $this->Data = new InvalidData();
     }
 }

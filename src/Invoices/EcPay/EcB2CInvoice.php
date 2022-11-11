@@ -3,11 +3,11 @@
 namespace Zero\Invoices\EcPay;
 
 use Zero\Invoices\EcPay\EcInvoice;
-use Zero\Invoices\EcPay\Requests\Parameters\Issue;
+use Zero\Invoices\EcPay\Requests\Parameters\Base;
 use WpOrg\Requests\Requests;
 
 class EcB2CInvoice extends EcInvoice
-{   
+{
     /**
      * @param array configs 
      */
@@ -17,13 +17,30 @@ class EcB2CInvoice extends EcInvoice
     }
 
     /**
-     * @param Issue issueRequestParameter 
+     * @param Issue issue 
      */
-    public function createIssue(Issue $issueRequestParameter)
+    public function createIssue(Base $issue)
     {
-        $sendData = array_filter((array) $issueRequestParameter);
+        $sendData = array_filter((array) $issue);
         $sendData['Data'] = $this->encrypt($sendData['Data']);
         $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['issue'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return json_encode($result, true);
+    }
+
+    /**
+     * @param Issue invalid 
+     */
+    public function createInvalid(Base $invalid)
+    {
+        $sendData = array_filter((array) $invalid);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['invalid'], [
             'Content-Type: application/json',
         ], json_encode($sendData));
 

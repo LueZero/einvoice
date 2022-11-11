@@ -7,6 +7,7 @@ require './vendor/autoload.php';
 use Zero\InvoiceClient as InvoiceClient;
 use Zero\InvoiceObject as InvoiceObject;
 use Zero\Invoices\EcPay\Requests\Parameters\Issue;
+use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
@@ -48,5 +49,18 @@ $issue->Data->Items = [
 ];
 
 $ecInvoice = $invoiceClient->createEcInvoice();
-echo $ecInvoice->createIssue($issue);
-return;
+// echo $ecInvoice->createIssue($issue);
+// return;
+
+// 綠界 發票範例 - 作廢發票
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invalid = new Invalid();
+$invalid->MerchantID = '2000132';
+$invalid->RqHeader = ['Timestamp' => time()];
+$invalid->Data->MerchantID = '2000132';
+$invalid->Data->InvoiceNo  = 'AQ90003550';
+$invalid->Data->InvoiceDate  = date('Y-m-d');
+$invalid->Data->Reason  = 'test';
+$ecInvoice = $invoiceClient->createEcInvoice();
+// echo $ecInvoice->createInvalid($invalid);
+// return;
