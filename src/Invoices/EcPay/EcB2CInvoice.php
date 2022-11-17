@@ -51,6 +51,23 @@ class EcB2CInvoice extends EcInvoice
     }
 
     /**
+     * @param AllowanceInvalid allowanceInvalid 
+     */
+    public function createAllowanceInvalid(Base $allowanceInvalid)
+    {
+        $sendData = array_filter((array) $allowanceInvalid);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['allowanceInvalid'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return json_encode($result, true);
+    }
+
+    /**
      * 加密
      * @param string data
      * @throws \Exception
@@ -99,11 +116,15 @@ class EcB2CInvoice extends EcInvoice
      */
     protected function stripPadding($string)
     {
+        if(strlen($string) === 0)
+            throw new \Exception("The stripPadding method parameter is empty.");
+
         $sLast = ord(substr($string, -1));
         $sLastC = chr($sLast);
         $pCheck = substr($string, -$sLast);
 
-        if (preg_match("/$sLastC{" . $sLast . "}/", $string)) {
+        if (preg_match("/$sLastC{" . $sLast . "}/", $string)) 
+        {
             $string = substr($string, 0, strlen($string) - $sLast);
             return $string;
         }

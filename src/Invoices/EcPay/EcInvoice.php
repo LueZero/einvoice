@@ -38,4 +38,6 @@ abstract class EcInvoice extends Invoice
     public abstract function createIssue(Base $issueRequestParameter);
 
     public abstract function createInvalid(Base $issueRequestParameter);
+
+    public abstract function createAllowanceInvalid(Base $issueRequestParameter);
 }

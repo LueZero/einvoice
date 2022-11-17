@@ -8,6 +8,7 @@ use Zero\InvoiceClient as InvoiceClient;
 use Zero\InvoiceObject as InvoiceObject;
 use Zero\Invoices\EcPay\Requests\Parameters\Issue;
 use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
+use Zero\Invoices\EcPay\Requests\Parameters\AllowanceInvalid;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
@@ -47,7 +48,6 @@ $issue->Data->Items = [
         'ItemRemark' => "item01_desc"
     ]
 ];
-
 $ecInvoice = $invoiceClient->createEcInvoice();
 // echo $ecInvoice->createIssue($issue);
 // return;
@@ -58,9 +58,22 @@ $invalid = new Invalid();
 $invalid->MerchantID = '2000132';
 $invalid->RqHeader = ['Timestamp' => time()];
 $invalid->Data->MerchantID = '2000132';
-$invalid->Data->InvoiceNo  = 'AQ90003550';
-$invalid->Data->InvoiceDate  = date('Y-m-d');
-$invalid->Data->Reason  = 'test';
+$invalid->Data->InvoiceNo = 'AQ90003550';
+$invalid->Data->InvoiceDate = date('Y-m-d');
+$invalid->Data->Reason = 'test';
 $ecInvoice = $invoiceClient->createEcInvoice();
 // echo $ecInvoice->createInvalid($invalid);
 // return;
+
+// 綠界 發票範例 - 作廢折讓
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$allowanceInvalid = new AllowanceInvalid();
+$allowanceInvalid->MerchantID = '2000132';
+$allowanceInvalid->RqHeader = ['Timestamp' => time()];
+$allowanceInvalid->Data->MerchantID = '2000132';
+$allowanceInvalid->Data->InvoiceNo = 'AQ90003550';
+$allowanceInvalid->Data->AllowanceNo = '2016022615195209';
+$allowanceInvalid->Data->Reason = 'test';
+$ecInvoice = $invoiceClient->createEcInvoice();
+echo $ecInvoice->createAllowanceInvalid($allowanceInvalid);
+return;
