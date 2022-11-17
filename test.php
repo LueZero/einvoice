@@ -75,5 +75,5 @@ $allowanceInvalid->Data->InvoiceNo = 'AQ90003550';
 $allowanceInvalid->Data->AllowanceNo = '2016022615195209';
 $allowanceInvalid->Data->Reason = 'test';
 $ecInvoice = $invoiceClient->createEcInvoice();
-echo $ecInvoice->createAllowanceInvalid($allowanceInvalid);
-return;
+// echo $ecInvoice->createAllowanceInvalid($allowanceInvalid);
+// return;
