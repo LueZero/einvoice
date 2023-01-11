@@ -68,6 +68,23 @@ class EcB2CInvoice extends EcInvoice
     }
 
     /**
+     * @param Allowance allowance 
+     */
+    public function createAllowance(Base $allowance)
+    {
+        $sendData = array_filter((array) $allowance);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['allowance'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return json_encode($result, true);
+    }
+
+    /**
      * 加密
      * @param string data
      * @throws \Exception

@@ -19,6 +19,8 @@ return [
                 'invalid' => '/Invalid',
                 'allowanceInvalid' => '/AllowanceInvalid',
                 'allowanceInvalidByCollegiate' => '/AllowanceInvalidByCollegiate',
+                'allowance' => '/Allowance',
+                'allowanceByCollegiate' => '/AllowanceByCollegiate',
                 'getIssue' => '/GetIssue',
                 'getAllowanceList' => '/GetAllowanceList',
                 'getInvalid' => '/GetInvalid',

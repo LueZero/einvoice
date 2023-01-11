@@ -35,9 +35,11 @@ abstract class EcInvoice extends Invoice
         $this->hashIv = empty($this->configs['invoiceParameters']['HashIV']) == true ? null : $this->configs['invoiceParameters']['HashIV'];
     }
 
-    public abstract function createIssue(Base $issueRequestParameter);
+    public abstract function createIssue(Base $base);
 
-    public abstract function createInvalid(Base $issueRequestParameter);
+    public abstract function createInvalid(Base $base);
 
-    public abstract function createAllowanceInvalid(Base $issueRequestParameter);
+    public abstract function createAllowanceInvalid(Base $base);
+
+    public abstract function createAllowance(Base $base);
 }

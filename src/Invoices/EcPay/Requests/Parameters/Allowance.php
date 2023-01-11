@@ -3,18 +3,18 @@
 namespace Zero\Invoices\EcPay\Requests\Parameters;
 
 use Zero\Invoices\EcPay\Requests\Parameters\Base;
-use Zero\Invoices\EcPay\Requests\Parameters\IssueData;
+use Zero\Invoices\EcPay\Requests\Parameters\AllowanceData;
 
-class Issue extends Base
+class Allowance extends Base
 {
     /**
      * @var class 
      * 加密資料
      */
-    public IssueData $Data;
-
+    public AllowanceData $Data;
+    
     public function __construct()
     {
-        $this->Data = new IssueData();
+        $this->Data = new AllowanceData();
     }
 }

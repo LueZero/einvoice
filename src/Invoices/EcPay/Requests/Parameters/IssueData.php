@@ -161,7 +161,8 @@ class IssueData
     public $InvoiceRemark;
 
     /**
-     * @var array 商品
+     * @var array 
+     * 商品
      * @var array[ItemSeq] 商品序號
      * @var array[ItemName] 商品名稱
      * @var array[ItemCount] 商品數量 支援整數 8 位小數 2 位

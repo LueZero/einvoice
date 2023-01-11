@@ -24,10 +24,4 @@ class Base
      * 傳入資料
      */
     public $RqHeader;
-
-    /**
-     * @var class 
-     * 加密資料
-     */
-    public $Data;
 }
