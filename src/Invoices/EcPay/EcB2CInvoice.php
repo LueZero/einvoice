@@ -18,6 +18,7 @@ class EcB2CInvoice extends EcInvoice
 
     /**
      * @param Issue issue 
+     * @return string
      */
     public function createIssue(Base $issue)
     {
@@ -35,6 +36,7 @@ class EcB2CInvoice extends EcInvoice
 
     /**
      * @param Issue invalid 
+     * @return string
      */
     public function createInvalid(Base $invalid)
     {
@@ -52,6 +54,7 @@ class EcB2CInvoice extends EcInvoice
 
     /**
      * @param AllowanceInvalid allowanceInvalid 
+     * @return string
      */
     public function createAllowanceInvalid(Base $allowanceInvalid)
     {
@@ -69,6 +72,7 @@ class EcB2CInvoice extends EcInvoice
 
     /**
      * @param Allowance allowance 
+     * @return string
      */
     public function createAllowance(Base $allowance)
     {

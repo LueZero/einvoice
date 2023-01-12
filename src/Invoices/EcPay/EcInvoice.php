@@ -35,6 +35,24 @@ abstract class EcInvoice extends Invoice
         $this->hashIv = empty($this->configs['invoiceParameters']['HashIV']) == true ? null : $this->configs['invoiceParameters']['HashIV'];
     }
 
+    /**
+     * @param Barcode barcode 
+     * @return bool
+     */
+    public function isBarcode(Base $barcode)
+    {
+        $sendData = array_filter((array) $barcode);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['checkBarcode'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return $result['Data']['IsExist'] === 'Y';
+    }
+
     public abstract function createIssue(Base $base);
 
     public abstract function createInvalid(Base $base);
