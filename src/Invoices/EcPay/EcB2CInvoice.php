@@ -9,11 +9,46 @@ use WpOrg\Requests\Requests;
 class EcB2CInvoice extends EcInvoice
 {
     /**
+     * @var string  
+     * issue URL
+     */
+    private $issueURL;
+
+    /**
+     * @var string  
+     * invalid URL
+     */
+    private $invalidURL;
+
+    /**
+     * @var string  
+     * allowanceInvalid URL
+     */
+    private $allowanceInvalidURL;
+
+    /**
+     * @var string  
+     * allowance URL
+     */
+    private $allowanceURL;
+
+    /**
+     * @var string  
+     * allowanceByCollegiate URL
+     */
+    private $allowanceByCollegiateURL;
+
+    /**
      * @param array configs 
      */
     public function __construct()
     {
         $this->requireConfig('ec');
+        $this->issueURL = $this->configs['B2C']['invoiceURLs']['issue'];
+        $this->invalidURL = $this->configs['B2C']['invoiceURLs']['invalid'];
+        $this->allowanceInvalidURL = $this->configs['B2C']['invoiceURLs']['allowanceInvalid'];
+        $this->allowanceURL = $this->configs['B2C']['invoiceURLs']['allowance'];
+        $this->allowanceByCollegiateURL = $this->configs['B2C']['invoiceURLs']['allowanceByCollegiate'];
     }
 
     /**
@@ -24,7 +59,7 @@ class EcB2CInvoice extends EcInvoice
     {
         $sendData = array_filter((array) $issue);
         $sendData['Data'] = $this->encrypt($sendData['Data']);
-        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['issue'], [
+        $response = Requests::post($this->baseURL . $this->issueURL, [
             'Content-Type: application/json',
         ], json_encode($sendData));
 
@@ -42,7 +77,7 @@ class EcB2CInvoice extends EcInvoice
     {
         $sendData = array_filter((array) $invalid);
         $sendData['Data'] = $this->encrypt($sendData['Data']);
-        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['invalid'], [
+        $response = Requests::post($this->baseURL . $invalid, [
             'Content-Type: application/json',
         ], json_encode($sendData));
 
@@ -60,7 +95,7 @@ class EcB2CInvoice extends EcInvoice
     {
         $sendData = array_filter((array) $allowanceInvalid);
         $sendData['Data'] = $this->encrypt($sendData['Data']);
-        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['allowanceInvalid'], [
+        $response = Requests::post($this->baseURL . $this->allowanceInvalidURL, [
             'Content-Type: application/json',
         ], json_encode($sendData));
 
@@ -78,7 +113,25 @@ class EcB2CInvoice extends EcInvoice
     {
         $sendData = array_filter((array) $allowance);
         $sendData['Data'] = $this->encrypt($sendData['Data']);
-        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['allowance'], [
+        $response = Requests::post($this->baseURL . $this->allowanceURL, [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return json_encode($result, true);
+    }
+
+    /**
+     * @param AllowanceByCollegiate allowanceByCollegiate 
+     * @return string
+     */
+    public function createAllowanceByCollegiate(Base $allowanceByCollegiate)
+    {
+        $sendData = array_filter((array) $allowanceByCollegiate);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->baseURL . $this->allowanceByCollegiateURL, [
             'Content-Type: application/json',
         ], json_encode($sendData));
 

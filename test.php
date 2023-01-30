@@ -10,6 +10,7 @@ use Zero\Invoices\EcPay\Requests\Parameters\Issue;
 use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
 use Zero\Invoices\EcPay\Requests\Parameters\AllowanceInvalid;
 use Zero\Invoices\EcPay\Requests\Parameters\Allowance;
+use Zero\Invoices\EcPay\Requests\Parameters\AllowanceByCollegiate;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
@@ -107,4 +108,33 @@ $allowance->Data->Items = [
 ];
 $ecInvoice = $invoiceClient->createEcInvoice();
 // echo $ecInvoice->createAllowance($allowance);
+// return;
+
+// 綠界 發票範例 - 線上開立折讓（通知開立）
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$allowanceByCollegiate = new AllowanceByCollegiate();
+$allowanceByCollegiate->MerchantID = '2000132';
+$allowanceByCollegiate->RqHeader = ['Timestamp' => time()];
+$allowanceByCollegiate->Data->MerchantID = '2000132';
+$allowanceByCollegiate->Data->InvoiceNo = 'AQ90003550';
+$allowanceByCollegiate->Data->InvoiceDate = '2019/09/17';
+$allowanceByCollegiate->Data->AllowanceNotify = 'E';
+$allowanceByCollegiate->Data->CustomerName = '綠界科技股份有限公司';
+$allowanceByCollegiate->Data->NotifyMail = 'test@ecpay.com.tw';
+$allowanceByCollegiate->Data->NotifyPhone = '0912345678';
+$allowanceByCollegiate->Data->AllowanceAmount = 50;
+$allowanceByCollegiate->Data->Items = [
+    [
+        'ItemSeq' => 1,
+        'ItemName' => "item01",
+        'ItemCount' => 1,
+        'ItemWord' => "件",
+        'ItemPrice' => 100,
+        'ItemTaxType' => "1",
+        'ItemAmount' => 100,
+        'ItemRemark' => "item01_desc"
+    ]
+];
+$ecInvoice = $invoiceClient->createEcInvoice();
+// echo $ecInvoice->createAllowanceByCollegiate($allowance);
 // return;

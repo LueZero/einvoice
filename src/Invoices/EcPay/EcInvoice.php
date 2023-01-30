@@ -8,6 +8,12 @@ use Zero\Invoices\EcPay\Requests\Parameters\Base;
 abstract class EcInvoice extends Invoice
 {
     /**
+     * @var string  
+     * base URL
+     */
+    protected $baseURL;
+
+    /**
      * @var string 
      * 特店編號
      */
@@ -33,6 +39,7 @@ abstract class EcInvoice extends Invoice
         $this->merchantID = empty($this->configs['invoiceParameters']['MerchantID']) == true ? null : $this->configs['invoiceParameters']['MerchantID'];
         $this->hashKey = empty($this->configs['invoiceParameters']['HashKey']) == true ? null : $this->configs['invoiceParameters']['HashKey'];
         $this->hashIv = empty($this->configs['invoiceParameters']['HashIV']) == true ? null : $this->configs['invoiceParameters']['HashIV'];
+        $this->baseURL = $this->configs['B2C']['invoiceURLs']['baseURL'];
     }
 
     /**
@@ -60,4 +67,6 @@ abstract class EcInvoice extends Invoice
     public abstract function createAllowanceInvalid(Base $base);
 
     public abstract function createAllowance(Base $base);
+
+    public abstract function createAllowanceByCollegiate(Base $base);
 }
