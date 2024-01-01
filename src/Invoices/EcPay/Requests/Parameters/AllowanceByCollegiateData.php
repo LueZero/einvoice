@@ -43,6 +43,12 @@ class AllowanceByCollegiateData
     public $NotifyMail;
 
     /**
+     * @var string
+     * 通知手機號碼
+     */
+    public $NotifyPhone;
+    
+    /**
      * @var int
      * 折讓單總金額(含稅)
      */
