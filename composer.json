@@ -1,4 +1,6 @@
 {
+    "name": "vendor/invoice",
+    "version": "1.0",
     "require": {
         "php": ">=7.0.0",
         "rmccue/requests": "^2.0"
