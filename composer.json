@@ -1,5 +1,5 @@
 {
-    "name": "vendor/invoice",
+    "name": "zero/invoice",
     "version": "1.0",
     "require": {
         "php": ">=7.0.0",
