@@ -4,6 +4,7 @@ namespace Zero\Invoices\EcPay;
 
 use Zero\Invoices\Invoice;
 use Zero\Invoices\EcPay\Requests\Parameters\Base;
+use WpOrg\Requests\Requests;
 
 abstract class EcInvoice extends Invoice
 {
