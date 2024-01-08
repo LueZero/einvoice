@@ -22,13 +22,13 @@ abstract class Invoice
         if (empty($configs[$paymentName]))
             throw new \Exception('Zero\Invoice::[invoice config is empty]');
 
-        $this->setConfigs($configs[$paymentName]);
+        $this->setConfig($configs[$paymentName]);
     }
 
     /**
      * @var array configs
      */
-    public function setConfigs(array $configs)
+    public function setConfig(array $configs)
     {
         $this->$configs = $configs;
     }

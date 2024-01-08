@@ -34,7 +34,7 @@ abstract class EcInvoice extends Invoice
      * @override 
      * @param array configs
      */
-    public function setConfigs($configs)
+    public function setConfig($configs)
     {
         $this->configs = $configs;
         $this->merchantID = empty($this->configs['invoiceParameters']['MerchantID']) == true ? null : $this->configs['invoiceParameters']['MerchantID'];
