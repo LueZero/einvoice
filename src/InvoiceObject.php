@@ -4,7 +4,7 @@ namespace Zero;
 
 class InvoiceObject
 {   
-   const INVOICE_MODULE_EC = "ec";
+   const INVOICE_NAME_EC = "ec";
 
    const B2B = "B2B";
 

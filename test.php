@@ -14,7 +14,7 @@ use Zero\Invoices\EcPay\Requests\Parameters\AllowanceByCollegiate;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
-$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
 $issue->RqHeader = ['Timestamp' => time()];
@@ -55,7 +55,7 @@ $ecInvoice = $invoiceClient->createEcInvoice();
 // return;
 
 // 綠界 發票範例 - 作廢發票
-$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $invalid = new Invalid();
 $invalid->MerchantID = '2000132';
 $invalid->RqHeader = ['Timestamp' => time()];
@@ -68,7 +68,7 @@ $ecInvoice = $invoiceClient->createEcInvoice();
 // return;
 
 // 綠界 發票範例 - 作廢折讓
-$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $allowanceInvalid = new AllowanceInvalid();
 $allowanceInvalid->MerchantID = '2000132';
 $allowanceInvalid->RqHeader = ['Timestamp' => time()];
@@ -82,7 +82,7 @@ $ecInvoice = $invoiceClient->createEcInvoice();
 
 
 // 綠界 發票範例 - 一般開立折讓（紙本開立）
-$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $allowance = new Allowance();
 $allowance->MerchantID = '2000132';
 $allowance->RqHeader = ['Timestamp' => time()];
@@ -111,7 +111,7 @@ $ecInvoice = $invoiceClient->createEcInvoice();
 // return;
 
 // 綠界 發票範例 - 線上開立折讓（通知開立）
-$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_MODULE_EC, InvoiceObject::B2C);
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $allowanceByCollegiate = new AllowanceByCollegiate();
 $allowanceByCollegiate->MerchantID = '2000132';
 $allowanceByCollegiate->RqHeader = ['Timestamp' => time()];

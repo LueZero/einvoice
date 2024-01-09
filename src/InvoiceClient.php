@@ -10,7 +10,7 @@ class InvoiceClient
     /**
      * @var string
      */
-    public $invoiceModuleName;
+    public $invoiceName;
 
     /**
      * @var string
@@ -18,12 +18,12 @@ class InvoiceClient
     public $invoiceTypeName;
 
     /**
-     * @param string invoiceModuleName
+     * @param string invoiceName
      * @param string invoiceTypeName
      */
-    public function __construct($invoiceModuleName, $invoiceTypeName)
+    public function __construct($invoiceName, $invoiceTypeName)
     {
-        $this->invoiceModuleName = $invoiceModuleName;
+        $this->invoiceName = $invoiceName;
         $this->invoiceTypeName = $invoiceTypeName;            
     }
 
@@ -35,11 +35,14 @@ class InvoiceClient
     public function createEcInvoice()
     {
         $ecInvoice = null;
-       
-        switch ($this->invoiceTypeName) {
-            case InvoiceObject::B2C:
-                $ecInvoice = new EcB2CInvoice();
-                break;
+
+        if($this->invoiceName === InvoiceObject::INVOICE_NAME_EC)
+        {
+            switch ($this->invoiceTypeName) {
+                case InvoiceObject::B2C:
+                    $ecInvoice = new EcB2CInvoice();
+                    break;
+            }
         }
 
         if (is_null($ecInvoice))
