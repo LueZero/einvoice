@@ -27,27 +27,27 @@ $issue->Data->CustomerAddr = '106 台北市南港區發票一街 1 號 1 樓';
 $issue->Data->CustomerPhone = '';
 $issue->Data->CustomerEmail = 'test@ecpay.com.tw';
 $issue->Data->ClearanceMark = 1;
-$issue->Data->Print = "1";
-$issue->Data->Donation = "0";
-$issue->Data->LoveCode = "";
-$issue->Data->CarrierType = "";
-$issue->Data->CarrierNum = "";
-$issue->Data->TaxType = "1";
+$issue->Data->Print = '1';
+$issue->Data->Donation = '0';
+$issue->Data->LoveCode = '';
+$issue->Data->CarrierType = '';
+$issue->Data->CarrierNum = '';
+$issue->Data->TaxType = '1';
 $issue->Data->SpecialTaxType = 1;
 $issue->Data->SalesAmount = 100;
-$issue->Data->InvoiceRemark = "發票備註";
-$issue->Data->InvType = "07";
-$issue->Data->Vat = "1";
+$issue->Data->InvoiceRemark = '發票備註';
+$issue->Data->InvType = '07';
+$issue->Data->Vat = '1';
 $issue->Data->Items = [
     [
         'ItemSeq' => 1,
-        'ItemName' => "item01",
+        'ItemName' => 'item01',
         'ItemCount' => 1,
-        'ItemWord' => "件",
+        'ItemWord' => '件',
         'ItemPrice' => 100,
-        'ItemTaxType' => "1",
+        'ItemTaxType' => '1',
         'ItemAmount' => 100,
-        'ItemRemark' => "item01_desc"
+        'ItemRemark' => 'item01_desc'
     ]
 ];
 $ecInvoice = $invoiceClient->createEcInvoice();
@@ -97,13 +97,13 @@ $allowance->Data->AllowanceAmount = 50;
 $allowance->Data->Items = [
     [
         'ItemSeq' => 1,
-        'ItemName' => "item01",
+        'ItemName' => 'item01',
         'ItemCount' => 1,
-        'ItemWord' => "件",
+        'ItemWord' => '件',
         'ItemPrice' => 100,
-        'ItemTaxType' => "1",
+        'ItemTaxType' => '1',
         'ItemAmount' => 100,
-        'ItemRemark' => "item01_desc"
+        'ItemRemark' => 'item01_desc'
     ]
 ];
 $ecInvoice = $invoiceClient->createEcInvoice();
@@ -126,13 +126,13 @@ $allowanceByCollegiate->Data->AllowanceAmount = 50;
 $allowanceByCollegiate->Data->Items = [
     [
         'ItemSeq' => 1,
-        'ItemName' => "item01",
+        'ItemName' => 'item01',
         'ItemCount' => 1,
-        'ItemWord' => "件",
+        'ItemWord' => '件',
         'ItemPrice' => 100,
-        'ItemTaxType' => "1",
+        'ItemTaxType' => '1',
         'ItemAmount' => 100,
-        'ItemRemark' => "item01_desc"
+        'ItemRemark' => 'item01_desc'
     ]
 ];
 $ecInvoice = $invoiceClient->createEcInvoice();
