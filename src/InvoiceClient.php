@@ -29,7 +29,6 @@ class InvoiceClient
 
     /**
      * 設定 Ec 發票模組
-     * @return \Zero\EcPay\EcInvoice
      * @throws \Exception
      */
     public function createEcInvoice()
