@@ -30,6 +30,7 @@ return [
                 'invoicePrint' => '/InvoicePrint',
                 'checkBarcode' => '/CheckBarcode',
                 'checkLoveCode' => '/CheckLoveCode',
+                'getCompanyNameByTaxID' => '/GetCompanyNameByTaxID'
             ]
         ]
     ]

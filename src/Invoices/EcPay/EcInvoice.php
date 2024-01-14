@@ -61,6 +61,43 @@ abstract class EcInvoice extends Invoice
         return $result['Data']['IsExist'] === 'Y';
     }
 
+    /**
+     * @param 
+     * @return bool
+     */
+    public function isLoveCode(Base $loveCode)
+    {
+        $sendData = array_filter((array) $loveCode);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['checkLoveCode'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return $result['Data']['IsExist'] === 'Y';
+    }
+
+    /**
+     * @param Company company
+     * @return bool
+     */
+    public function isCompanyNameByTaxId(Base $company)
+    {
+        $sendData = array_filter((array) $company);
+        $sendData['Data'] = $this->encrypt($sendData['Data']);
+        $response = Requests::post($this->configs['B2C']['invoiceURLs']['baseURL'] . $this->configs['B2C']['invoiceURLs']['getCompanyNameByTaxID'], [
+            'Content-Type: application/json',
+        ], json_encode($sendData));
+
+        $result = json_decode($response->body, true);
+       
+        $result['Data'] = $this->decrypt($result['Data']);
+
+        return $result['Data']['RtnCode'] == '1';
+    }
+
     public abstract function createIssue(Base $base);
 
     public abstract function createInvalid(Base $base);

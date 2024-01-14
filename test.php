@@ -11,6 +11,9 @@ use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
 use Zero\Invoices\EcPay\Requests\Parameters\AllowanceInvalid;
 use Zero\Invoices\EcPay\Requests\Parameters\Allowance;
 use Zero\Invoices\EcPay\Requests\Parameters\AllowanceByCollegiate;
+use Zero\Invoices\EcPay\Requests\Parameters\Barcode;
+use Zero\Invoices\EcPay\Requests\Parameters\LoveCode;
+use Zero\Invoices\EcPay\Requests\Parameters\Company;
 
 // 綠界 發票範例 - 開立發票
 $relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
@@ -137,4 +140,37 @@ $allowanceByCollegiate->Data->Items = [
 ];
 $ecInvoice = $invoiceClient->createEcInvoice();
 // echo $ecInvoice->createAllowanceByCollegiate($allowance);
+// return;
+
+// 綠界 發票範例 - 手機條碼驗證
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
+$barcode = new Barcode();
+$barcode->MerchantID = '2000132';
+$barcode->RqHeader = ['Timestamp' => time()];
+$barcode->Data->MerchantID = '2000132';
+$barcode->Data->BarCode  = '/FRXEKUH';
+$ecInvoice = $invoiceClient->createEcInvoice();
+// var_dump($ecInvoice->isBarcode($barcode));
+// return;
+
+// 綠界 發票範例 - 捐贈碼驗證
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
+$loveCode = new LoveCode();
+$loveCode->MerchantID = '2000132';
+$loveCode->RqHeader = ['Timestamp' => time()];
+$loveCode->Data->MerchantID = '2000132';
+$loveCode->Data->LoveCode  = '17527';
+$ecInvoice = $invoiceClient->createEcInvoice();
+// var_dump($ecInvoice->isLoveCode($loveCode));
+// return;
+
+// 綠界 發票範例 - 統一編號驗證
+$invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
+$company = new Company();
+$company->MerchantID = '2000132';
+$company->RqHeader = ['Timestamp' => time()];
+$company->Data->MerchantID = '2000132';
+$company->Data->UnifiedBusinessNo  = '97s025978';
+$ecInvoice = $invoiceClient->createEcInvoice();
+// var_dump($ecInvoice->isCompanyNameByTaxId($company));
 // return;
