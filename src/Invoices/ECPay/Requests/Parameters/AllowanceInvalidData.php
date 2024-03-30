@@ -1,8 +1,8 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
-class InvalidData
+class AllowanceInvalidData
 {
     /**
      * @var string 
@@ -18,9 +18,9 @@ class InvalidData
 
     /**
      * @var string 
-     * 發票開立日期
+     * 折讓編號
      */
-    public $InvoiceDate;
+    public $AllowanceNo;
 
     /**
      * @var string 

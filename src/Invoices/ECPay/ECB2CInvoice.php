@@ -1,12 +1,12 @@
 <?php
 
-namespace Zero\Invoices\EcPay;
+namespace Zero\Invoices\ECPay;
 
-use Zero\Invoices\EcPay\EcInvoice;
-use Zero\Invoices\EcPay\Requests\Parameters\Base;
+use Zero\Invoices\ECPay\ECInvoice;
+use Zero\Invoices\ECPay\Requests\Parameters\Base;
 use WpOrg\Requests\Requests;
 
-class EcB2CInvoice extends EcInvoice
+class ECB2CInvoice extends ECInvoice
 {
     /**
      * @var string  

@@ -1,8 +1,8 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
-class BarcodeData
+class LoveCodeData
 {
     /**
      * @var string 
@@ -12,7 +12,7 @@ class BarcodeData
 
     /**
      * @var string 
-     * 手機條碼
+     * 受贈單位之捐贈碼
      */
-    public $BarCode;
+    public $LoveCode;
 }

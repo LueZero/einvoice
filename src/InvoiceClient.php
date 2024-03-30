@@ -3,7 +3,7 @@
 namespace Zero;
 
 use Zero\InvoiceObject;
-use Zero\Invoices\EcPay\EcB2CInvoice;
+use Zero\Invoices\ECPay\ECB2CInvoice;
 
 class InvoiceClient
 {
@@ -28,10 +28,10 @@ class InvoiceClient
     }
 
     /**
-     * 設定 Ec 發票模組
+     * 設定 EC 發票模組
      * @throws \Exception
      */
-    public function createEcInvoice()
+    public function createECInvoice()
     {
         $ecInvoice = null;
 
@@ -39,7 +39,7 @@ class InvoiceClient
         {
             switch ($this->invoiceTypeName) {
                 case InvoiceObject::B2C:
-                    $ecInvoice = new EcB2CInvoice();
+                    $ecInvoice = new ECB2CInvoice();
                     break;
             }
         }

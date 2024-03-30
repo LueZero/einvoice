@@ -1,8 +1,8 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
-class LoveCodeData
+class CompanyData
 {
     /**
      * @var string 
@@ -12,7 +12,7 @@ class LoveCodeData
 
     /**
      * @var string 
-     * 受贈單位之捐贈碼
+     * 統一編號
      */
-    public $LoveCode;
+    public $UnifiedBusinessNo ;
 }

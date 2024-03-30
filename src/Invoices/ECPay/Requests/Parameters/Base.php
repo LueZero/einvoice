@@ -1,9 +1,6 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
-
-use Zero\Invoices\EcPay\Requests\Parameters\Issue;
-use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
 class Base
 {

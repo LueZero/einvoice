@@ -6,17 +6,17 @@ require './vendor/autoload.php';
 
 use Zero\InvoiceClient as InvoiceClient;
 use Zero\InvoiceObject as InvoiceObject;
-use Zero\Invoices\EcPay\Requests\Parameters\Issue;
-use Zero\Invoices\EcPay\Requests\Parameters\Invalid;
-use Zero\Invoices\EcPay\Requests\Parameters\AllowanceInvalid;
-use Zero\Invoices\EcPay\Requests\Parameters\Allowance;
-use Zero\Invoices\EcPay\Requests\Parameters\AllowanceByCollegiate;
-use Zero\Invoices\EcPay\Requests\Parameters\Barcode;
-use Zero\Invoices\EcPay\Requests\Parameters\LoveCode;
-use Zero\Invoices\EcPay\Requests\Parameters\Company;
+use Zero\Invoices\ECPay\Requests\Parameters\Issue;
+use Zero\Invoices\ECPay\Requests\Parameters\Invalid;
+use Zero\Invoices\ECPay\Requests\Parameters\AllowanceInvalid;
+use Zero\Invoices\ECPay\Requests\Parameters\Allowance;
+use Zero\Invoices\ECPay\Requests\Parameters\AllowanceByCollegiate;
+use Zero\Invoices\ECPay\Requests\Parameters\Barcode;
+use Zero\Invoices\ECPay\Requests\Parameters\LoveCode;
+use Zero\Invoices\ECPay\Requests\Parameters\Company;
 
 // 綠界 發票範例 - 開立發票
-$relateNumber = 'EcInvoice' . date('YmdHis') . rand(1000, 0);
+$relateNumber = 'ECInvoice' . date('YmdHis') . rand(1000, 0);
 $invoiceClient = new InvoiceClient(InvoiceObject::INVOICE_NAME_EC, InvoiceObject::B2C);
 $issue = new Issue();
 $issue->MerchantID = '2000132';
@@ -53,7 +53,7 @@ $issue->Data->Items = [
         'ItemRemark' => 'item01_desc'
     ]
 ];
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // echo $ecInvoice->createIssue($issue);
 // return;
 
@@ -66,7 +66,7 @@ $invalid->Data->MerchantID = '2000132';
 $invalid->Data->InvoiceNo = 'AQ90003550';
 $invalid->Data->InvoiceDate = date('Y-m-d');
 $invalid->Data->Reason = 'test';
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // echo $ecInvoice->createInvalid($invalid);
 // return;
 
@@ -79,7 +79,7 @@ $allowanceInvalid->Data->MerchantID = '2000132';
 $allowanceInvalid->Data->InvoiceNo = 'AQ90003550';
 $allowanceInvalid->Data->AllowanceNo = '2016022615195209';
 $allowanceInvalid->Data->Reason = 'test';
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // echo $ecInvoice->createAllowanceInvalid($allowanceInvalid);
 // return;
 
@@ -109,7 +109,7 @@ $allowance->Data->Items = [
         'ItemRemark' => 'item01_desc'
     ]
 ];
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // echo $ecInvoice->createAllowance($allowance);
 // return;
 
@@ -138,7 +138,7 @@ $allowanceByCollegiate->Data->Items = [
         'ItemRemark' => 'item01_desc'
     ]
 ];
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // echo $ecInvoice->createAllowanceByCollegiate($allowance);
 // return;
 
@@ -149,7 +149,7 @@ $barcode->MerchantID = '2000132';
 $barcode->RqHeader = ['Timestamp' => time()];
 $barcode->Data->MerchantID = '2000132';
 $barcode->Data->BarCode  = '/FRXEKUH';
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // var_dump($ecInvoice->isBarcode($barcode));
 // return;
 
@@ -160,7 +160,7 @@ $loveCode->MerchantID = '2000132';
 $loveCode->RqHeader = ['Timestamp' => time()];
 $loveCode->Data->MerchantID = '2000132';
 $loveCode->Data->LoveCode  = '17527';
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // var_dump($ecInvoice->isLoveCode($loveCode));
 // return;
 
@@ -171,6 +171,6 @@ $company->MerchantID = '2000132';
 $company->RqHeader = ['Timestamp' => time()];
 $company->Data->MerchantID = '2000132';
 $company->Data->UnifiedBusinessNo  = '97s025978';
-$ecInvoice = $invoiceClient->createEcInvoice();
+$ecInvoice = $invoiceClient->createECInvoice();
 // var_dump($ecInvoice->isCompanyNameByTaxId($company));
 // return;

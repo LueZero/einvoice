@@ -1,8 +1,8 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
-class CompanyData
+class BarcodeData
 {
     /**
      * @var string 
@@ -12,7 +12,7 @@ class CompanyData
 
     /**
      * @var string 
-     * 統一編號
+     * 手機條碼
      */
-    public $UnifiedBusinessNo ;
+    public $BarCode;
 }

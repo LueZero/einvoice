@@ -1,9 +1,9 @@
 <?php
 
-namespace Zero\Invoices\EcPay\Requests\Parameters;
+namespace Zero\Invoices\ECPay\Requests\Parameters;
 
-use Zero\Invoices\EcPay\Requests\Parameters\Base;
-use Zero\Invoices\EcPay\Requests\Parameters\AllowanceData;
+use Zero\Invoices\ECPay\Requests\Parameters\Base;
+use Zero\Invoices\ECPay\Requests\Parameters\AllowanceData;
 
 class Allowance extends Base
 {
